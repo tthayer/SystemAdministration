@@ -2,6 +2,8 @@
 
 import os, subprocess
 
+__author__ = "Muhammad Zeeshan Munir"
+__copyright__ = "Copyright 2013, Muhammad Zeeshan Munir"
 
 '''
    Check and tested with CentOS 6.4 for KVM machines with Python 2.7 and Python 3.3
