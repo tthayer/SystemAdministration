@@ -35,9 +35,9 @@ def chkUptime(command):
 It can be used to send an email to sys admin with the disk space left. The default warning
 level is 75 %.'''
 def chkDisk(disk_name, disk_size, warn_level=75):
-  time_stamp = datetime.datetime.now()
-  disk_s = int(disk_size.strip('%'))
-  free_disk = 100 - disk_s
+  time_stamp = datetime.datetime.now() #get current date and time for timestamp.
+  disk_s = int(disk_size.strip('%')) #Python stip function strips '%' sign from the disk_size and then convert it into an int.
+  free_disk = 100 - disk_s #100 - 80 = 20% disk space is left
   if  disk_s > warn_level:
     print(str(time_stamp) +"\t The disk " +disk_name+ " is getting full. Only "+ str(free_disk)+" % free space is left.")
 
@@ -54,7 +54,8 @@ def sendCmd(command):
 def sendCmd_Dict(command):
   for output in executeCmd(command):
     df_h = output.decode("utf-8") #if we don't decode it sends 'b' for buffer with the output
-    df_h = df_h.split()
+    df_h = df_h.split() #output is splitted based on new line chracters.
+  #Creating a dictionary, key is disk name e.g. /, /boot, /home and values are used space in percentage e.g. 60%, 80% etc
   df_h_dict = {df_h[i]: df_h[i+1] for i in range(0, len(df_h), 2)}
   for key, value in df_h_dict.items():
     chkDisk(key, value)
