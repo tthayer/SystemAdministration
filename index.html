@@ -37,6 +37,17 @@
 $ ./script_name
 </code></pre>
 
+<h2>
+<a name="using-iozone-script-for-benchmarking-of-glusterfs" class="anchor" href="#using-iozone-script-for-benchmarking-of-glusterfs"><span class="octicon octicon-link"></span></a>Using iozone script for benchmarking of GlusterFS</h2>
+
+<p>The code runs iozone with different block sizes and 16 active client threads, using an 8GB file size to test. To minimize the effects of caching, you should benchmark I/O performance using a file size at least twice the RAM installed on your servers. you can limit the amount of RAM seen by the kernel to 2GB—for example, by passing the mem=2G kernel option at boot. To identify where the system is constrained, run sar and iostat in separate terminals for each GlusterFS node:</p>
+
+<p><strong>sar -n DEV 2 | egrep "(IFACE|eth0|eth1|bond0)"</strong></p>
+
+<p><strong>iostat -N -t -x 2 | egrep "(Device|brick)"</strong></p>
+
+<p>Keep an eye on the throughput of each network interface reported by the sar command above. Also, monitor the utilization column of the iostat output to check whether any of the bricks are saturated. The commands gluster volume top and gluster volume profile provide many other useful performance metrics.</p>
+
 <h3>
 <a name="copyrights" class="anchor" href="#copyrights"><span class="octicon octicon-link"></span></a>Copyrights</h3>
 
