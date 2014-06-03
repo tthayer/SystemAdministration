@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 __author__ = "Muhammad Zeeshan Munir, modified by Anthony Thayer"
 __copywrite__ = "Original Copyright 2013, Muhammad Zeeshan Munir, https://github.com/ZeeshanMunir/SystemAdministration"
 
